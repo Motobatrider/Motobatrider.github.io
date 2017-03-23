@@ -1,0 +1,537 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PPT抽奖程序 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="背景公司年会，例行要搞个抽奖，去年是用抽奖箱来抽的，我觉得蛮好的，但是有人觉得不够直观，想换成用计算机来抽，虽然我觉得用机抽更不透明啦，但是有这个需要么就得去满足啊。网上稍微找了一下，大部分不能用或者要买码注册，偶尔有几个能用的太丑了，起码我觉得蛮丑的，而且也不是很满足我们的要求。退而求其次，又看了一下用Excel来做的抽奖程序，下了几个版本的，也有上述的问题，其中大部分的VBA还加密码了，一怒之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PPT抽奖程序">
+<meta property="og:url" content="Blackpepperfactory.com/2016/01/07/25HPPT_VBALottery_20160107/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="背景公司年会，例行要搞个抽奖，去年是用抽奖箱来抽的，我觉得蛮好的，但是有人觉得不够直观，想换成用计算机来抽，虽然我觉得用机抽更不透明啦，但是有这个需要么就得去满足啊。网上稍微找了一下，大部分不能用或者要买码注册，偶尔有几个能用的太丑了，起码我觉得蛮丑的，而且也不是很满足我们的要求。退而求其次，又看了一下用Excel来做的抽奖程序，下了几个版本的，也有上述的问题，其中大部分的VBA还加密码了，一怒之">
+<meta property="og:updated_time" content="2016-01-13T00:49:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PPT抽奖程序">
+<meta name="twitter:description" content="背景公司年会，例行要搞个抽奖，去年是用抽奖箱来抽的，我觉得蛮好的，但是有人觉得不够直观，想换成用计算机来抽，虽然我觉得用机抽更不透明啦，但是有这个需要么就得去满足啊。网上稍微找了一下，大部分不能用或者要买码注册，偶尔有几个能用的太丑了，起码我觉得蛮丑的，而且也不是很满足我们的要求。退而求其次，又看了一下用Excel来做的抽奖程序，下了几个版本的，也有上述的问题，其中大部分的VBA还加密码了，一怒之">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/07/25HPPT_VBALottery_20160107/" title="PPT抽奖程序" itemprop="url">PPT抽奖程序</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-07T11:12:20.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序细节"><span class="toc-number">3.</span> <span class="toc-text">程序细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字跳动"><span class="toc-number">3.1.</span> <span class="toc-text">数字跳动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重置"><span class="toc-number">3.2.</span> <span class="toc-text">重置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小问题"><span class="toc-number">3.3.</span> <span class="toc-text">小问题</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司年会，例行要搞个抽奖，去年是用抽奖箱来抽的，我觉得蛮好的，但是有人觉得不够直观，想换成用计算机来抽，虽然我觉得用机抽更不透明啦，但是有这个需要么就得去满足啊。<br>网上稍微找了一下，大部分不能用或者要买码注册，偶尔有几个能用的太丑了，起码我觉得蛮丑的，而且也不是很满足我们的要求。退而求其次，又看了一下用Excel来做的抽奖程序，下了几个版本的，也有上述的问题，其中大部分的VBA还加密码了，一怒之下，自己写吧。<br>既然准备自己写了，就按照自己的要求来了，公司这次抽奖方式是准备了从1号到300号的抽奖券，到时候数了人头给，每个进场的人自己拿一张奖券，这样上面的号码就是随机的了，奖品方面准备了30个三等奖，要求抽10次，每次抽3个数字，10个二等奖，抽5次，每次抽一个号码，还有3个一等奖和1个特等奖都是每次抽一个号码的。所以我要准备一个抽奖程序，可以输入一个数字范围，然后按照上面的要求抽出随机数字来。<br>一开始也准备用Excel，可是后来一想，反正都是写，用PPT的话整个界面能看起来好看一些，就用PPT来做了。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>有数字范围，还要抽过的不能重复，自然而然的就想到用数组来做了，构建数组很简单，不过我想给每个奖项做一个单独的页面，所以要一个全局的数组，这样得新建一个Model，然后定义一下数组，这里定义了一个1到500的，反正我这里只要用到300以内就够了</p>
+<pre><code>Public pool(1 To 500) As Long, IsStop As Boolean, Reduction As Integer, PCount As Integer
+</code></pre><p>防止重复就没那么方便了，VBA不支持直接删除数组元素，直接.pop()这样的好事没了，网上找了找，用了个笨办法，抽到一个数字就把它后面的所有数字往前移一位，这样保证抽奖不重复</p>
+<pre><code>  For i = 1 To PCount
+    If pool(i) = y Then
+        For j = i To PCount
+            pool(j) = pool(j + 1)
+        Next j
+        Exit For
+    End If
+Next i
+</code></pre><p>至于随机倒是最简单的部分，在数组的有效部分（因为每次抽签之后都要把抽到的数字给去掉）里面随机一个值就可以了。所以每次对数组现在的长度来做个随机，然后取这个位置的数字就可以了：</p>
+<pre><code>y = pool(Int((PCount - Reduction) * Rnd + 1))
+</code></pre><p>这里用PCount来取整个数组的初始长度（也就是出席人数），每抽一次把PCount减一，这个减一操作用Reduction来完成，随机一个数字之后Reduction加一就好了。然后做个Rnd,因为Rnd是随机到[0,1)的值，所以后面加一保证覆盖的数字区域。</p>
+<p>这样一来抽奖的主体就出来了。对于一个数字Label（例如B1），点一下抽奖键，跑一下这段代码：</p>
+<pre><code>y = pool(Int((PCount - Reduction) * Rnd + 1))
+B1.Caption = y
+For i = 1 To PCount
+    If pool(i) = y Then
+        For j = i To PCount
+            pool(j) = pool(j + 1)
+        Next j
+        Exit For
+    End If
+Next i
+Reduction = Reduction + 1
+</code></pre><p>根据PCount-Reduction算出来的现在的数组的长度，随机出一个y值，然后在数组里面根据这个y取一个数出来显示在B1里面，之后把这个值后面所有元素往前挪一个身位保证以后的抽奖不会重复。最后把Reduction加一保证数组有效长度的正确。<br>这样一来，从理论上，抽奖问题就解决了，之后就是要解决一些细节上的问题了</p>
+<h3 id="程序细节"><a href="#程序细节" class="headerlink" title="程序细节"></a>程序细节</h3><h4 id="数字跳动"><a href="#数字跳动" class="headerlink" title="数字跳动"></a>数字跳动</h4><p>现在是点一下，数字直接跳出来，我觉得够直观，但是有人觉得没有数字在那里跳啊跳的，看起来有点假，虽然我解释了那个数字跳动就是骗人的，但是算了，还是说什么就做上去吧。<br>简单的加一下数字随机滚动，其实是可以在和抽奖一个按钮上完成的，但是怕按错了或者多按了少按了，还是分成两个按钮：<br>做了一个starting rolling的按钮，加了这些语句</p>
+<pre><code>Dim y As Integer, i As Integer, j As Integer, s As String
+IsStop = False
+For i = 1 To 5000
+     If IsStop = False Then
+        For j = 1 To 1000
+                B1.Caption = Int((PCount - 1 + 1) * Rnd + 1)
+        Next
+        DoEvents
+     End If
+ Next
+</code></pre><p>一开始检测一下是不是需要数字滚动，然后根据PCount来随机显示一下，简单粗暴。<br>用i和j套两层循环，这样可以循环5000乘1000也就是500万次显示，基本上也是够了，如果循环次数不够的话，等循环次数结束以后就会报错了。<br>然后在抽奖那里的代码里面开头加上一句</p>
+<pre><code>IsStop = True
+</code></pre><p>这样点抽奖，滚动就停了。</p>
+<h4 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h4><p>这个就更简单了，只是在PPT里面要先找到Slide之后在对应那个Label来清空一下，既然要重置，这个按钮也就一并把参加人数写进数组吧：</p>
+<pre><code>PCount = Val(TextBox1)
+
+For i = 1 To PCount
+    pool(i) = i
+Next i
+
+ Label1.Caption = PCount
+ Reduction = 0
+ With Slide1
+      .B1.Caption = &quot;&quot;
+      .B2.Caption = &quot;&quot;
+      .B3.Caption = &quot;&quot;
+      .Label3.Caption = &quot;&quot;
+ End With
+</code></pre><h4 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h4><p>在插入控件的时候，把按钮和Label的BackStyle都设置成了0 - fmBackStyleTransparer 这样一来在编辑状态下倒是底色透明了，可是一到演示的时候，就是一个大大的白框，后来网上查了一下，在演示状态不支持控件透明底色…只好把底色乖乖的改回到背景色。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Work/">Work</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2016/01/07/25HPPT_VBALottery_20160107/" data-title="PPT抽奖程序 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/08/25HITSmartPhoneGit_20160108/" title="手机上挂一个自己的Git服务器">
+  <strong>上一篇：</strong><br/>
+  <span>
+  手机上挂一个自己的Git服务器</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/04/25HExcel_CondionalFormatingIssue_20151204/"  title="条件格式也会让Excel变慢">
+ <strong>下一篇：</strong><br/> 
+ <span>条件格式也会让Excel变慢
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="PPT抽奖程序" data-url="Blackpepperfactory.com/2016/01/07/25HPPT_VBALottery_20160107/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序细节"><span class="toc-number">3.</span> <span class="toc-text">程序细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字跳动"><span class="toc-number">3.1.</span> <span class="toc-text">数字跳动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重置"><span class="toc-number">3.2.</span> <span class="toc-text">重置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小问题"><span class="toc-number">3.3.</span> <span class="toc-text">小问题</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,522 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>手机上挂一个自己的Git服务器 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="为什么要做这个主要是为了好玩。在跑步和自行车圈子里都有这样的说法：渣渣研究装备，大神只管去跑（骑），我就是这样一个渣渣…虽然代码知识几乎没有，平时也就是写写自己的博客，最多用到点CSS,时间都用在把工具换来换去了。Git在代码管理上的功能毋庸置疑，如果只是为了自己做一些代码管理和控制的话，直接用GitHub做远程就可以了，即使是对隐私有要求又舍不得给GitHub捐点钱的话，也可以用新浪SAE的应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手机上挂一个自己的Git服务器">
+<meta property="og:url" content="Blackpepperfactory.com/2016/01/08/25HITSmartPhoneGit_20160108/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="为什么要做这个主要是为了好玩。在跑步和自行车圈子里都有这样的说法：渣渣研究装备，大神只管去跑（骑），我就是这样一个渣渣…虽然代码知识几乎没有，平时也就是写写自己的博客，最多用到点CSS,时间都用在把工具换来换去了。Git在代码管理上的功能毋庸置疑，如果只是为了自己做一些代码管理和控制的话，直接用GitHub做远程就可以了，即使是对隐私有要求又舍不得给GitHub捐点钱的话，也可以用新浪SAE的应用">
+<meta property="og:updated_time" content="2016-01-08T05:02:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手机上挂一个自己的Git服务器">
+<meta name="twitter:description" content="为什么要做这个主要是为了好玩。在跑步和自行车圈子里都有这样的说法：渣渣研究装备，大神只管去跑（骑），我就是这样一个渣渣…虽然代码知识几乎没有，平时也就是写写自己的博客，最多用到点CSS,时间都用在把工具换来换去了。Git在代码管理上的功能毋庸置疑，如果只是为了自己做一些代码管理和控制的话，直接用GitHub做远程就可以了，即使是对隐私有要求又舍不得给GitHub捐点钱的话，也可以用新浪SAE的应用">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/08/25HITSmartPhoneGit_20160108/" title="手机上挂一个自己的Git服务器" itemprop="url">手机上挂一个自己的Git服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-08T04:54:12.000Z" itemprop="datePublished"> 发表于 2016-01-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要做这个"><span class="toc-number">1.</span> <span class="toc-text">为什么要做这个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">2.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装手机Linux"><span class="toc-number">3.</span> <span class="toc-text">安装手机Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在手机上配置Git服务器"><span class="toc-number">4.</span> <span class="toc-text">在手机上配置Git服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考网站和链接"><span class="toc-number">5.</span> <span class="toc-text">参考网站和链接</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="为什么要做这个"><a href="#为什么要做这个" class="headerlink" title="为什么要做这个"></a>为什么要做这个</h2><p>主要是为了好玩。在跑步和自行车圈子里都有这样的说法：渣渣研究装备，大神只管去跑（骑），我就是这样一个渣渣…<br>虽然代码知识几乎没有，平时也就是写写自己的博客，最多用到点CSS,时间都用在把工具换来换去了。<br>Git在代码管理上的功能毋庸置疑，如果只是为了自己做一些代码管理和控制的话，直接用GitHub做远程就可以了，即使是对隐私有要求又舍不得给GitHub捐点钱的话，也可以用新浪SAE的应用平台，现在基本上也算是免费了，5个代码空间用完了再搞个账号就是。<br>不过有的时候就是想折腾一下，所以想着自己来搞个服务器出来，而且看起来还蛮简单的。<br>至于为什么要在手机搞这个，主要还是想着用起来方便，也想过树莓派，但是携带是个问题，手机自带电源屏幕，续航过得去，而且虽然用手机输入法随便调个什么都让人想死，但是好歹也是有了一个直接调试的手段。<br>这样就相当于一个随身携带的服务器，回家到单位都可以连得上。<br>缺点么也蛮明显的，卡啊。Push个什么东西到手机上，一共也就是30厘米的路程吧，够去GitHub几个来回了。不过好歹是可以用。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载以下的东西：<br>Android手机，配置当然越高越好，不过最低配置要求是1G的处理器，Root过，4G以上的SD卡空间（其实就用core的话只要有1G就够了…）有Wifi（会没有吗？）内存的话1G RAM也够的，再小的话512应该是刚刚刚刚好，建议为了不要和自己过不去，还是不要太拼了，尽量选1G内存以上的机子吧。<br>我用的XT928，超老的机器，淘宝上300不到，跑得还蛮流畅的，自带hdmi输出，还能配Dock，还蛮好玩的(捡垃圾玩也蛮花钱的说实话)<br>因为还要调试点东西，所以电脑还是必要的。</p>
+<p>软件的话看下面</p>
+<p>手机端：</p>
+<ol>
+<li>Linuxforandroid的镜像，这个东西有很多版本的，我就为了开一个Git顺带玩点别的，就只下了个core，没有图形界面的，如果要在手机上玩完整的带桌面的Linux，看这个教程</li>
+<li>终端模拟器 找个能用的就行</li>
+<li>Android VNC Viewer 如果装完整版的Ubuntu的话，这个还是必要的</li>
+<li>BusyBox 运行脚本用的，有的rom自带了，有的没有，没的话这个是必须要装一下的</li>
+<li>ubuntu.sh Ubuntu安装脚本</li>
+<li>bootscript.sh Ubuntu驱动脚本</li>
+</ol>
+<p>电脑上：</p>
+<ol>
+<li>Xshell ssh远程调试用的，用你顺手的就可以</li>
+<li>这篇教程</li>
+</ol>
+<p>这样就够啦，如果软件都有的话，整个过程很快的。</p>
+<h2 id="安装手机Linux"><a href="#安装手机Linux" class="headerlink" title="安装手机Linux"></a>安装手机Linux</h2><ol>
+<li>在手机上装好BusyBox;终端模拟器;如果要图形界面的话，VNC也装上吧</li>
+<li>在SD卡上建一个新的文件夹就叫ubuntu就好了，然后把linux镜像，<em>ubuntu.sh</em> , <em>bootscript.sh</em>都扔进去</li>
+<li>开终端模拟器，su一下，转到root账号</li>
+<li>进入刚才建的ubuntu文件夹<br>  cd /sdcard/ubuntu</li>
+<li>ls 一下看看文件夹都对不对，刚才拷贝进去的3个文件都在的话,用<em>sh ubuntu.sh</em>运行一下安装脚本     </li>
+<li>然后就开始安装了，中间会要求你输入密码，这个是建立了一个叫Ubuntu的用户的密码，输入并确认一次就好</li>
+<li>之后会提示是否开ssh和VNC，OK就好</li>
+<li>然后要求输入屏幕尺寸，按照实际的来，我的XT928就是1280x720,要注意一下的是中间的是xyz的x</li>
+<li>之后会提醒你一下是不是保存设置，y保存之后，如果没有问题的话，终端模拟器里面的提示符就会变*root@localhost:~#× 这就说明完成啦，你就可以在手机上用linux了</li>
+<li>要退出的话就敲<em>exit</em>,下次要再进的话，用<em>sh bootscript.sh</em>就可以启动ubuntu了</li>
+</ol>
+<h2 id="在手机上配置Git服务器"><a href="#在手机上配置Git服务器" class="headerlink" title="在手机上配置Git服务器"></a>在手机上配置Git服务器</h2><ol>
+<li>老老实实用键盘吧，如果有蓝牙或者otg的键盘就接一个，如果没有的话，用电脑ssh远程过来吧</li>
+<li>如果不用蓝牙键盘或者otg接一个键盘的话，老老实实用电脑ssh远程来敲命令吧…</li>
+<li>先安装一下git，ubuntu的话很简单<br>  $ sudo apt-get install git</li>
+<li>然后创建一个git用户$ sudo adduser git</li>
+<li>创建证书，在/home/git/.ssh/authorized_keys文件里面，把每台电脑的id-rsa.pub给导进去，每行一个</li>
+<li>初始化仓库，例如/srv/hello.git，在/srv下输入<br>  $ sudo git init –bare hello.git</li>
+<li>把owner改为git，<br>  $ sudo chown -R git:git hello.git</li>
+<li>禁用shell，在/etc/passwd里面，把git:x:1001:1001:,,,:/home/git:/bin/bash改为git:x:1001:1001:,,,:/home/git:/bin/bash</li>
+<li>然后就可以试着用电脑克隆一下看看了:<br>  $ git clone git@server:srv/sample.git<br>把server改成你手机的ip就可以了</li>
+<li>克隆成功，说明你的个人携带版Git服务器就诞生了，之后怎么用就看你的喜欢啦</li>
+</ol>
+<h2 id="参考网站和链接"><a href="#参考网站和链接" class="headerlink" title="参考网站和链接"></a>参考网站和链接</h2><p><a href="https://github.com/" target="_blank" rel="external">Github</a><br><a href="http://www.linuxidc.com/Linux/2013-05/84014p2.htm" target="_blank" rel="external">Android 手机上安装并运行 Ubuntu 12.04</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/IT/">IT</a><a href="/tags/Coding/">Coding</a><a href="/tags/Github/">Github</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2016/01/08/25HITSmartPhoneGit_20160108/" data-title="手机上挂一个自己的Git服务器 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/12/25Hrsbc山芋藤_20160112/" title="山芋藤">
+  <strong>上一篇：</strong><br/>
+  <span>
+  山芋藤</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/07/25HPPT_VBALottery_20160107/"  title="PPT抽奖程序">
+ <strong>下一篇：</strong><br/> 
+ <span>PPT抽奖程序
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="手机上挂一个自己的Git服务器" data-url="Blackpepperfactory.com/2016/01/08/25HITSmartPhoneGit_20160108/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要做这个"><span class="toc-number">1.</span> <span class="toc-text">为什么要做这个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">2.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装手机Linux"><span class="toc-number">3.</span> <span class="toc-text">安装手机Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在手机上配置Git服务器"><span class="toc-number">4.</span> <span class="toc-text">在手机上配置Git服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考网站和链接"><span class="toc-number">5.</span> <span class="toc-text">参考网站和链接</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

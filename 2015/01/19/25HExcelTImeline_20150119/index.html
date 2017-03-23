@@ -1,0 +1,536 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Excel2013,怎么画时间轴 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="Excel2013更新了很多新的功能，同时支持APP让很多以前蛮辛苦的事现在只要装个APP就能解决了，时间轴就是这样的。新的免费的APP能够很简单的画出一个界面还算是很不错的甘特图来。
+安装APP
+在APP for Office里面搜索Gantt就能找到这个工具了，免费的，双击直接安装
+安装好了之后，就能在Mu Apps里面找到Gantt Chart for Excel了，双击直接插入，我们这里先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel2013,怎么画时间轴">
+<meta property="og:url" content="Blackpepperfactory.com/2015/01/19/25HExcelTImeline_20150119/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="Excel2013更新了很多新的功能，同时支持APP让很多以前蛮辛苦的事现在只要装个APP就能解决了，时间轴就是这样的。新的免费的APP能够很简单的画出一个界面还算是很不错的甘特图来。
+安装APP
+在APP for Office里面搜索Gantt就能找到这个工具了，免费的，双击直接安装
+安装好了之后，就能在Mu Apps里面找到Gantt Chart for Excel了，双击直接插入，我们这里先">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_01.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_02.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_04.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_041.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_03.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_06.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_07.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_08.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_09.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_101.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_102.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_11.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_12.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_13.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_14.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_15.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_16.jpg">
+<meta property="og:updated_time" content="2015-01-19T00:44:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Excel2013,怎么画时间轴">
+<meta name="twitter:description" content="Excel2013更新了很多新的功能，同时支持APP让很多以前蛮辛苦的事现在只要装个APP就能解决了，时间轴就是这样的。新的免费的APP能够很简单的画出一个界面还算是很不错的甘特图来。
+安装APP
+在APP for Office里面搜索Gantt就能找到这个工具了，免费的，双击直接安装
+安装好了之后，就能在Mu Apps里面找到Gantt Chart for Excel了，双击直接插入，我们这里先">
+<meta name="twitter:image" content="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_01.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/19/25HExcelTImeline_20150119/" title="Excel2013,怎么画时间轴" itemprop="url">Excel2013,怎么画时间轴</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-19T07:12:20.000Z" itemprop="datePublished"> 发表于 2015-01-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装APP"><span class="toc-number">1.</span> <span class="toc-text">安装APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用Excel图表完成甘特图"><span class="toc-number">2.</span> <span class="toc-text">用Excel图表完成甘特图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#里程碑图"><span class="toc-number">3.</span> <span class="toc-text">里程碑图</span></a></li></ol>
+		
+		</div>
+		
+		<p>Excel2013更新了很多新的功能，同时支持APP让很多以前蛮辛苦的事现在只要装个APP就能解决了，时间轴就是这样的。新的免费的APP能够很简单的画出一个界面还算是很不错的甘特图来。</p>
+<h3 id="安装APP"><a href="#安装APP" class="headerlink" title="安装APP"></a>安装APP</h3><ol>
+<li>在APP for Office里面搜索Gantt就能找到这个工具了，免费的，双击直接安装<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_01.jpg" alt=""></li>
+<li>安装好了之后，就能在Mu Apps里面找到Gantt Chart for Excel了，双击直接插入，我们这里先不要做这一步，先把我们的数据填好。<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_02.jpg" alt=""></li>
+<li>在插入图表之前你得自己定义一下你的甘特图的信息，必要信息有：<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_04.jpg" alt=""><ul>
+<li>Track     任务的组</li>
+<li>Task      任务名称</li>
+<li>Start      开始时间</li>
+<li>End        结束时间<br>然后按要求填写，注意你的开始结束时间一定要用标准的时间格式，也就是说你看到的时间都是默认靠右边对齐的.然后把你的表格表单化一下<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_041.jpg" alt=""></li>
+</ul>
+</li>
+<li>之后插入Gannt Chart, 选择Select Table, 选中你自己定义的表单<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_03.jpg" alt=""></li>
+<li>这样，一张甘特图就出来了，你可以直接用也可以当作图片拷贝出来<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_06.jpg" alt=""></li>
+</ol>
+<h3 id="用Excel图表完成甘特图"><a href="#用Excel图表完成甘特图" class="headerlink" title="用Excel图表完成甘特图"></a>用Excel图表完成甘特图</h3><p>用APP固然是很方便啦，不过就是可以调整的地方比较少，有时候也不一定都合自己的需要，我们也可以用Excel的图表自己来做一个甘特图：</p>
+<ol>
+<li>还是那些数据，不过在Start和End中间我们插一列天数，天数等于End-Start,记得要把格式换成数字。<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_07.jpg" alt=""></li>
+<li>用这张表插入一个堆积图，不要选比例堆积，普通的就成<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_08.jpg" alt=""></li>
+<li>图出来了吧，看起来好像都是一样的嘛，不急，我们来做下一步<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_09.jpg" alt=""></li>
+<li>我们在图上删掉End这一项，看看会怎么样。<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_101.jpg" alt=""></li>
+<li>不一样了吧<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_102.jpg" alt=""><br>我们再把Start这一项都变成透明色和透明填充<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_11.jpg" alt=""></li>
+<li>之后就只要再调整一下坐标轴和系列的颜色,我们这张甘特图就有模有样了<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_12.jpg" alt=""></li>
+</ol>
+<h3 id="里程碑图"><a href="#里程碑图" class="headerlink" title="里程碑图"></a>里程碑图</h3><p>有时候我们不需要甘特图啦，只要标注一下重点时间，记录一下各个里程碑，这时候怎么做呢？简单做个里程碑的图就是了。</p>
+<ol>
+<li>还是先把数据写下来，里程碑图只要一个日期就行， 后面再加两列一样数字，待会就知道做什么用的了。<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_13.jpg" alt=""></li>
+<li>现在让我们插入一个图表，直接选择组合图表吧，一列选散点图，另外一列选柱状图，记得不要勾选第二坐标轴<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_14.jpg" alt=""></li>
+<li>有点雏形出来了吧，让我们把柱状图的颜色宽度调整一下，然后去掉一些不需要的信息。<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_15.jpg" alt=""></li>
+<li>这个就是一个基础的里程碑图了，我们一开始设置的那个数字就是用来给每个日期定高度用的,大家可以研究一下怎么把这张图做的更漂亮一些<br><img src="http://blackpepperfactory.qiniudn.com/20150119_TimeLine_16.jpg" alt=""></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Learning/">Learning</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2015/01/19/25HExcelTImeline_20150119/" data-title="Excel2013,怎么画时间轴 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/21/25Hrsbc塔菜_20150121/" title="塔菜">
+  <strong>上一篇：</strong><br/>
+  <span>
+  塔菜</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/18/25Hrsbc韭黄_20150118/"  title="韭黄">
+ <strong>下一篇：</strong><br/> 
+ <span>韭黄
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="Excel2013,怎么画时间轴" data-url="Blackpepperfactory.com/2015/01/19/25HExcelTImeline_20150119/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装APP"><span class="toc-number">1.</span> <span class="toc-text">安装APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用Excel图表完成甘特图"><span class="toc-number">2.</span> <span class="toc-text">用Excel图表完成甘特图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#里程碑图"><span class="toc-number">3.</span> <span class="toc-text">里程碑图</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

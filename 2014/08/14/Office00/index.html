@@ -1,0 +1,489 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>从抽象到具象的循环 - 数据的获得处理和展示 0-1 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="引子起了一个很宏伟的题目啊。工作了也有快7年了，一直以来都在和Office做斗争，因为Google的技巧比较好，骗得同事们以为我的Excel技巧还不错，经常也会有人来问一些问题。稀奇古怪的问题见多了也就久病成医了。今年公司整体升级了Office 2013，新的Office里面的功能很强大，变化的地方也不少，所以我们也组织了几次Office 2013的培训，在培训中发现大家对于Office套件的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从抽象到具象的循环 - 数据的获得处理和展示 0-1">
+<meta property="og:url" content="Blackpepperfactory.com/2014/08/14/Office00/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="引子起了一个很宏伟的题目啊。工作了也有快7年了，一直以来都在和Office做斗争，因为Google的技巧比较好，骗得同事们以为我的Excel技巧还不错，经常也会有人来问一些问题。稀奇古怪的问题见多了也就久病成医了。今年公司整体升级了Office 2013，新的Office里面的功能很强大，变化的地方也不少，所以我们也组织了几次Office 2013的培训，在培训中发现大家对于Office套件的使用">
+<meta property="og:updated_time" content="2014-08-27T00:19:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从抽象到具象的循环 - 数据的获得处理和展示 0-1">
+<meta name="twitter:description" content="引子起了一个很宏伟的题目啊。工作了也有快7年了，一直以来都在和Office做斗争，因为Google的技巧比较好，骗得同事们以为我的Excel技巧还不错，经常也会有人来问一些问题。稀奇古怪的问题见多了也就久病成医了。今年公司整体升级了Office 2013，新的Office里面的功能很强大，变化的地方也不少，所以我们也组织了几次Office 2013的培训，在培训中发现大家对于Office套件的使用">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/14/Office00/" title="从抽象到具象的循环 - 数据的获得处理和展示 0-1" itemprop="url">从抽象到具象的循环 - 数据的获得处理和展示 0-1</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-14T01:55:45.000Z" itemprop="datePublished"> 发表于 2014-08-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引子"><span class="toc-number">1.</span> <span class="toc-text">引子</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>起了一个很宏伟的题目啊。工作了也有快7年了，一直以来都在和Office做斗争，因为Google的技巧比较好，骗得同事们以为我的Excel技巧还不错，经常也会有人来问一些问题。稀奇古怪的问题见多了也就久病成医了。今年公司整体升级了Office 2013，新的Office里面的功能很强大，变化的地方也不少，所以我们也组织了几次Office 2013的培训，在培训中发现大家对于Office套件的使用还有一些疑惑。由于Excel里面加的新功能比较多，最近Excel的问题也不少，在帮大家寻找问题答案的时候我也发现有些同事对于数据这个概念的理解还不是很准确，所以借这个机会正好我也梳理一下我自己对数据的认识和对Excel的使用。<br>这个计划主要分成一下几个部分：</p>
+<ul>
+<li>数据的获得：说一下我们从不同的地方获得数据的类型，TXT; CSV等等文档格式，如何将这些格式导入Excel，需要做哪些加工。同时也会说一下组织数据的一些原则和Excel的用途和建表的原则</li>
+<li>数据的处理：当导入了数据之后，要对数据进行一些初步的处理，格式是很重要的，为什么要给数据设定格式，如何设定，如何清理格式等等，还有对于不方便使用的数据如何进行整理，分列和新的Flash fill的使用</li>
+<li>数据的分析：我们有了合乎规格的数据了，就要对数据展开分析了，一般都是使用数据透视图和透视表，我计划把公式的部分也放在这里</li>
+<li>数据的展示：我们搜集顺利分析数据都是为了指导实际的目的，这里准备阐述如何让自己手里的数据达到我的目的，以及新的工具PowerView的使用</li>
+</ul>
+<hr>
+<p>基本上就是这样，这个流程也说明了我这个题目的本意，从抽象到具象，然后从具象再回到抽象。人一开始是没有具象的数字的意识的，我前几天看过一个研究，如果让一个原始人给出一个1到10中间的数字，他不会说是5，一般会说是3的样子。因为对原始人来说，1只老虎到3只老虎之间危险程度的差别和3只到10只之间的差别是差不多的，事实上，90只老虎盯着你和1000只也没什么区别了。这个就是抽象的认识，但是我们要分析，要定量的研究，就必须把抽象的感觉转化成具象的数字，然后才能对数字就行研究，我们不能分析很危险和十分危险这两个等级的危险程度对我出门的影响，但是两套房子其他条件都一样，一套80平方卖200万另外一套130买220万，大家一般都能做出选择。<br>但是光是有具象的分析还不行，分析也是为了实际的目的服务的，不然的话就和研究针尖上的天使一样了，这都是有钱有闲有信仰的人做的事，我们这种俗人需要的是知道这个决定该不该做，这支股票该不该买，手下的小王小李小张上半年谁的业绩最好需要鼓励一下，公司的产品到底在哪里卖得好，为什么，怎么卖得更好。所以最后我们还得用自己手里具象的数字来得出一个概念化的结论，指导实际生活中的操作和决定。<br>还是举原始人和老虎的例子，作为现代人，我们把老虎从1只到100只（或者更多）这些数字列出来，再给他们一个威胁的加权系数（加权听上去很高大上，意思就是轻重程度，“权，然后知轻重”，孟子说的），这个系数可能很复杂也可能很简单，最后计算出来，3只老虎的威胁程度减去一只老虎的威胁程度和10只老虎减3只老虎的威胁程度差不多。好像和原始人没什么区别嘛。但是我们有了这个方法，小到蚂蚁，大到陨石或者外星人，都可以套用这个方法来算出威胁的差异，指导我们该如何去做。这才是灵长类智人属的这个智所代表的含义。</p>
+<p>[注]<br>《孟子·梁惠王上》曰：“权，然后知轻重。”<br>原始人的数字概念我忘了从哪里看到的了，可能是知乎？<br>。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Learning/">Learning</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2014/08/14/Office00/" data-title="从抽象到具象的循环 - 数据的获得处理和展示 0-1 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/14/office01/" title="从抽象到具象的循环 - 数据的获得处理和展示 0-2">
+  <strong>上一篇：</strong><br/>
+  <span>
+  从抽象到具象的循环 - 数据的获得处理和展示 0-2</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/07/ELearninginco/"  title="关于公司内部在线教育的思考">
+ <strong>下一篇：</strong><br/> 
+ <span>关于公司内部在线教育的思考
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="从抽象到具象的循环 - 数据的获得处理和展示 0-1" data-url="Blackpepperfactory.com/2014/08/14/Office00/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引子"><span class="toc-number">1.</span> <span class="toc-text">引子</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

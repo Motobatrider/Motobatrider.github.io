@@ -1,0 +1,506 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>简单版导出AD用户信息并处理 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="导出AD用户信息并处理基本上，我们要从AD里面查点什么的话，能直接导出一个表肯定是最好的了。这方面的工具也不少，不过如果能只用系统原生资源的话就更好了。
+从服务器上导出信息用ldifde命令就可以很简单的导出AD里面信息，如果你敲ldifde没反应的话应该是没这个组件，找台域环境下的服务器再试试吧。举个栗子：ldifde -v -f c:\ChinaUS.ldf -d &amp;quot;ou=China">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单版导出AD用户信息并处理">
+<meta property="og:url" content="Blackpepperfactory.com/2014/08/19/exportAD/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="导出AD用户信息并处理基本上，我们要从AD里面查点什么的话，能直接导出一个表肯定是最好的了。这方面的工具也不少，不过如果能只用系统原生资源的话就更好了。
+从服务器上导出信息用ldifde命令就可以很简单的导出AD里面信息，如果你敲ldifde没反应的话应该是没这个组件，找台域环境下的服务器再试试吧。举个栗子：ldifde -v -f c:\ChinaUS.ldf -d &amp;quot;ou=China">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_01_20140819.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_02_20140819.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_03_20140819.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_04_20140819.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_05_20140819.jpg">
+<meta property="og:updated_time" content="2014-08-18T23:59:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单版导出AD用户信息并处理">
+<meta name="twitter:description" content="导出AD用户信息并处理基本上，我们要从AD里面查点什么的话，能直接导出一个表肯定是最好的了。这方面的工具也不少，不过如果能只用系统原生资源的话就更好了。
+从服务器上导出信息用ldifde命令就可以很简单的导出AD里面信息，如果你敲ldifde没反应的话应该是没这个组件，找台域环境下的服务器再试试吧。举个栗子：ldifde -v -f c:\ChinaUS.ldf -d &amp;quot;ou=China">
+<meta name="twitter:image" content="http://blackpepperfactory.qiniudn.com/AD_Ldifde_01_20140819.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/19/exportAD/" title="简单版导出AD用户信息并处理" itemprop="url">简单版导出AD用户信息并处理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-19T06:55:39.000Z" itemprop="datePublished"> 发表于 2014-08-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导出AD用户信息并处理"><span class="toc-number">1.</span> <span class="toc-text">导出AD用户信息并处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从服务器上导出信息"><span class="toc-number">1.1.</span> <span class="toc-text">从服务器上导出信息</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="导出AD用户信息并处理"><a href="#导出AD用户信息并处理" class="headerlink" title="导出AD用户信息并处理"></a>导出AD用户信息并处理</h1><p>基本上，我们要从AD里面查点什么的话，能直接导出一个表肯定是最好的了。这方面的工具也不少，不过如果能只用系统原生资源的话就更好了。</p>
+<h2 id="从服务器上导出信息"><a href="#从服务器上导出信息" class="headerlink" title="从服务器上导出信息"></a>从服务器上导出信息</h2><p>用ldifde命令就可以很简单的导出AD里面信息，如果你敲ldifde没反应的话应该是没这个组件，找台域环境下的服务器再试试吧。<br>举个栗子：<br><code>ldifde -v -f c:\ChinaUS.ldf -d &quot;ou=China,ou=Users,ou=Root2,dc=TestDomain,dc=co&quot; 
+-r &quot;(objectClass=user)&quot; -l&quot;displayname,homephone,mail,company,sAMAccountName&quot;</code><br>稍微解释一下，这条命令导出TestDomain.co域下Root2\China的OU下面的User里面的所有用户信息</p>
+<ul>
+<li>-v 设置详细模式</li>
+<li>-f 设置导出路径 (导出为C盘下面ChinaUS文件)</li>
+<li>-d 设置搜索基础 (Testdomain.co\Root2\China\Users)</li>
+<li>-r 筛选器 这里筛选ObjectClass 为user 也就是只导出用户账户</li>
+<li>-l 导出结果列表 不加就是导出所有，太漫长了我只需要几个关键字就可以了</li>
+</ul>
+<p>具体的参数什么的可以看微软的官方文档：<br><a href="http://technet.microsoft.com/zh-cn/library/cc755456.aspx" target="_blank" rel="external">LDIFDE</a><br>不同系统里面用到的关键字的对应关系看这里：<br><a href="http://support.microsoft.com/kb/281563" target="_blank" rel="external">关键字对应表</a></p>
+<p>这样就导出了一个叫ChinaUS.ldf的文件，可以用记事本或者别的什么你喜欢的文本编辑工具打开</p>
+<p>##用Excel让表看起来方便一点</p>
+<p>虽然我们把表导出来了，但是看起来实在是不怎么好看，我们可以简单处理一下。比如用Excel排一下。<br>Excel可以直接把ldf文件当Txt导进去，不过我们最好还是先处理一下。<br>随便找个文本工具打开ldf文件，它看起来应该是这样的：<br><img src="http://blackpepperfactory.qiniudn.com/AD_Ldifde_01_20140819.jpg" alt=""><br>我只截取了一部分数据，名字什么的也打码了，看个意思就好。<br>我们来处理一下，首先这样一块一块的数据不行，Excel导入的话喜欢横平竖直的数据，大家应该知道我什么意思，所以我们要处理一下，把一块块的数据给拉直了。<br>比如我们要吧changetype这一条拉到dn后面去，最简单的办法就是替换一下，用;c替换掉回车加c 这样的话就把changetype这一行前面加了dn的后面<br>这里用写字板就不行了，我们换Word打开，然后替换^pc为;c<br><img src="http://blackpepperfactory.qiniudn.com/AD_Ldifde_02_20140819.jpg" alt=""></p>
+<blockquote>
+<p>Word里面查找或者替换的话，要输入回车的话是输入^p</p>
+</blockquote>
+<p>替换好了就是这个效果：<br><img src="http://blackpepperfactory.qiniudn.com/AD_Ldifde_03_20140819.jpg" alt=""><br>用同样的办法把displayname; sAMAccountName; Mail; HomePhone都拉上来。<br>最后是这个样子：<br><img src="http://blackpepperfactory.qiniudn.com/AD_Ldifde_04_20140819.jpg" alt=""><br>然后Excel导入一下，分隔符选分号(<strong>；</strong>)<br>就能导成这样了，之后就只要稍微删点东西和加加标题什么的。<br><img src="http://blackpepperfactory.qiniudn.com/AD_Ldifde_05_20140819.jpg" alt=""><br>这样就把AD里面的信息导出来了，同理还可以把其他要的东西导出来，还不要多用任何其他的工具。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/8H/">8H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/IT/">IT</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2014/08/19/exportAD/" data-title="简单版导出AD用户信息并处理 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/20/exceltransf/" title="Excel根据需求查找并填充值以及Vlookup的一些注意点">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Excel根据需求查找并填充值以及Vlookup的一些注意点</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/18/imlhssd/"  title="最难得是真放开-《我是落花生的女儿》读后感">
+ <strong>下一篇：</strong><br/> 
+ <span>最难得是真放开-《我是落花生的女儿》读后感
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="简单版导出AD用户信息并处理" data-url="Blackpepperfactory.com/2014/08/19/exportAD/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导出AD用户信息并处理"><span class="toc-number">1.</span> <span class="toc-text">导出AD用户信息并处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从服务器上导出信息"><span class="toc-number">1.1.</span> <span class="toc-text">从服务器上导出信息</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,495 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Word 邮件合并(Mailing)和域(Field) | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="今天有公司发合同样本把Mailing的母本发过来了，一时间居然没看出来，然后在插入域那里研究了一会，正好下午不是很忙，来说一下Mailing的事。Mailing相对来说是一个用过的人并没有那么多的应用，看起来科技含量很高，但是其实很简单，用好了看上去还蛮高端的。由于批量输入的特性，人事和财务用得会特别多一点，比如出工资单啊，入职说明啊，合同啊什么的。其实Mailing算是对Word里面域的一个特殊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Word 邮件合并(Mailing)和域(Field)">
+<meta property="og:url" content="Blackpepperfactory.com/2015/02/13/25HWordMailing_20150213/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="今天有公司发合同样本把Mailing的母本发过来了，一时间居然没看出来，然后在插入域那里研究了一会，正好下午不是很忙，来说一下Mailing的事。Mailing相对来说是一个用过的人并没有那么多的应用，看起来科技含量很高，但是其实很简单，用好了看上去还蛮高端的。由于批量输入的特性，人事和财务用得会特别多一点，比如出工资单啊，入职说明啊，合同啊什么的。其实Mailing算是对Word里面域的一个特殊">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_01.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_011.png">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_02.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_03.png">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_04.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_05.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_06.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_07.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_08.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_09.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_10.jpg">
+<meta property="og:updated_time" content="2015-02-13T07:28:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Word 邮件合并(Mailing)和域(Field)">
+<meta name="twitter:description" content="今天有公司发合同样本把Mailing的母本发过来了，一时间居然没看出来，然后在插入域那里研究了一会，正好下午不是很忙，来说一下Mailing的事。Mailing相对来说是一个用过的人并没有那么多的应用，看起来科技含量很高，但是其实很简单，用好了看上去还蛮高端的。由于批量输入的特性，人事和财务用得会特别多一点，比如出工资单啊，入职说明啊，合同啊什么的。其实Mailing算是对Word里面域的一个特殊">
+<meta name="twitter:image" content="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_01.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/02/13/25HWordMailing_20150213/" title="Word 邮件合并(Mailing)和域(Field)" itemprop="url">Word 邮件合并(Mailing)和域(Field)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-02-13T07:12:20.000Z" itemprop="datePublished"> 发表于 2015-02-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>今天有公司发合同样本把Mailing的母本发过来了，一时间居然没看出来，然后在插入域那里研究了一会，正好下午不是很忙，来说一下Mailing的事。<br>Mailing相对来说是一个用过的人并没有那么多的应用，看起来科技含量很高，但是其实很简单，用好了看上去还蛮高端的。由于批量输入的特性，人事和财务用得会特别多一点，比如出工资单啊，入职说明啊，合同啊什么的。<br>其实Mailing算是对Word里面域的一个特殊使用。域是Word里面的一种特殊的命令，可以看作是和Excel里面的公式差不多的东西，都是用一些特殊的书写方法来让软件进行一些自动的处理。<br>插入域的快捷键是Ctrl+F9或者在插入的工具栏中点击Quick Parts - Field, 然后用F9或者右键点击插入的域选择切换代码可以切换显示模式(就和Excel里面切换显示公式或者公式结果一样),切换显示的快捷键是Alt+F9,域的快捷键都和F9有关的。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_01.jpg" alt="01"><br>Ctrl+F9插入一个域之后，会看到一对花括号{}，然后点上去会有灰色的底色显示，告诉你这个东西不是普通的字符。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_011.png" alt="011"><br>一般来说，时间啊EQ(公式)都是比较常用的域，但是今天既然是由一个Mailing的邮件引起的，就说说Mailing用到的Mergefield吧。<br>在{}里面我们要输入域名，代码和域的选项，我们用个例子来说明吧。<br>一般来说，新员工入职会需要一些自己的基本信息，员工号，部门，邮箱什么的，这时候我们就用用一个Mailing的Word母板文件加上一个储存了信息的Excel来批量完成一批针对不同人的Word文件。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_02.jpg" alt="02"><br>在这里，姓名(张三)，员工号(511043),工作地点(Shanghai)，部门(IT)，是每个人不同的，其他的文字每个人都一样，所以这几个字段我们可以用用Mailing来让系统自动从Excel里面导进去。<br>至于为什么叫Mailing呢？因为这个功能原来是用来写信封的，信封上面大量的信息是一样的，公司地址啊邮编什么的，只有每个人的名字和电话之类的信息不一样，这样一个个文件来改就有点傻啦，于是有了这个Mailing。<br>Mailing匹配的是Mergefield,所以我们可以这样来用：<br>新建一个Word文档，里面该写什么写什么，当我要写名字的时候，我用一个Field来代替名字，按Ctrl+F9插入域，域的类型是Mergefield, 这个Mergefield名字就叫Name好了，方便记忆。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_03.png" alt="03"><br>以此类推，把员工号，工作地点，部门都用Mergefield来代替，我们就写完了这样一个文档。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_04.jpg" alt="04"><br>然后我们要让数据自动可以进去，Mailing是支持很多数据模式的不过我们这里的小玩意就用不上大炮了，用Excel来打打鸟就可以了。<br>新建一张Excel表，把我们要填的那几个Field的信息输进去，第一行的表头标题最好和你那几个Mergefield的名字对应，虽然不对应也可以但是对应好了就不用手动去配对了。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_05.jpg" alt="05"><br>现在模板有了数据也有了，只要把它们合在一起就OK了，点开Mailing下面的选择数据源(Select Recipients) - 选择已有的列表 (Using Existing List)选中刚刚那张Excel表<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_06.jpg" alt="06"><br>因为我们在Word和Excel里面用的域的名字是一样的，所以就自动配对成功了。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_07.jpg" alt="07"><br>接下来，按一下预览就能看到结果了，然后按合并就能导出每个人的Word了。<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_08.jpg" alt="08"><br>很不错吧，还有更方便的。<br>因为这里Mailing是用域的方式来操作的，我们还能很方便的对域里面格式进行调整。<br>比如，我们可以让工作地点用全大写字母来表示，然后员工号后面加两位小数位：<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_09.jpg" alt="09"><br>这里我们没有对原始数据做任何调整，只是通过定义域格式开关就达成了我们的目的：<br><img src="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_10.jpg" alt="10"></p>
+<blockquote>
+<p>文字格式的开关是* 数字格式的开关是#<br>关于域格式的更多的信息可以参考以下的链接：<br><a href="https://support.office.microsoft.com/zh-cn/article/%E6%8F%92%E5%85%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%9F%9F%E4%BB%A3%E7%A0%81%EF%BC%8CWord-2010-%E5%B9%B4-7e9ea3b4-83ec-4203-9e66-4efc027f2cf3?CorrelationId=4f7184fd-0dd7-40f3-bf53-dfd7d0d382fc&amp;ui=zh-CN&amp;rs=zh-CN&amp;ad=CN&amp;omkt=en-US" target="_blank" rel="external">Insert and format field codes in Word 2010</a><br><a href="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_Mailing.docx" target="_blank" rel="external">Word栗子</a><br><a href="http://blackpepperfactory.qiniudn.com/20150213_Word_Mailing_UserInfo.xlsx" target="_blank" rel="external">Excel栗子</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Learning/">Learning</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2015/02/13/25HWordMailing_20150213/" data-title="Word 邮件合并(Mailing)和域(Field) | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/02/14/25HBala关于学习_20150214/" title="关于学习">
+  <strong>上一篇：</strong><br/>
+  <span>
+  关于学习</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/02/10/25HBala最小系统慢慢改进_20150210/"  title="最小系统，慢慢改进">
+ <strong>下一篇：</strong><br/> 
+ <span>最小系统，慢慢改进
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="Word 邮件合并(Mailing)和域(Field)" data-url="Blackpepperfactory.com/2015/02/13/25HWordMailing_20150213/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,515 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>从抽象到具象的循环 - 数据的获得处理和展示 1-2 | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="数据来源打开Excel的数据标签，获取外部数据大概占了五分之一的空间，我们可以从Access,网站，Sql server, Odata, MS Query等等不同的来源获取数据，不过对于像我一样的一般用户来说，最多的数据来源渠道应该还是文本文件了。不过其他的来源也不应该忽视啦，考虑之后开几个新的小章节介绍MS Query等等
+导入文本Excel默认的导入文本格式有三种Txt,Prn,CsvTxt不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从抽象到具象的循环 - 数据的获得处理和展示 1-2">
+<meta property="og:url" content="Blackpepperfactory.com/2014/08/26/office12/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="数据来源打开Excel的数据标签，获取外部数据大概占了五分之一的空间，我们可以从Access,网站，Sql server, Odata, MS Query等等不同的来源获取数据，不过对于像我一样的一般用户来说，最多的数据来源渠道应该还是文本文件了。不过其他的来源也不应该忽视啦，考虑之后开几个新的小章节介绍MS Query等等
+导入文本Excel默认的导入文本格式有三种Txt,Prn,CsvTxt不">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_01_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_02_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_03_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_04_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_05_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_06_20140827.jpg">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_07_20140827.jpg">
+<meta property="og:updated_time" content="2014-08-27T00:38:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从抽象到具象的循环 - 数据的获得处理和展示 1-2">
+<meta name="twitter:description" content="数据来源打开Excel的数据标签，获取外部数据大概占了五分之一的空间，我们可以从Access,网站，Sql server, Odata, MS Query等等不同的来源获取数据，不过对于像我一样的一般用户来说，最多的数据来源渠道应该还是文本文件了。不过其他的来源也不应该忽视啦，考虑之后开几个新的小章节介绍MS Query等等
+导入文本Excel默认的导入文本格式有三种Txt,Prn,CsvTxt不">
+<meta name="twitter:image" content="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_01_20140827.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/26/office12/" title="从抽象到具象的循环 - 数据的获得处理和展示 1-2" itemprop="url">从抽象到具象的循环 - 数据的获得处理和展示 1-2</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-26T07:12:20.000Z" itemprop="datePublished"> 发表于 2014-08-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据来源"><span class="toc-number">1.</span> <span class="toc-text">数据来源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导入文本"><span class="toc-number">2.</span> <span class="toc-text">导入文本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导入前的编辑"><span class="toc-number">3.</span> <span class="toc-text">导入前的编辑</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h1><p>打开Excel的数据标签，获取外部数据大概占了五分之一的空间，我们可以从Access,网站，Sql server, Odata, MS Query等等不同的来源获取数据，不过对于像我一样的一般用户来说，最多的数据来源渠道应该还是文本文件了。<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_01_20140827.jpg" alt="01"><br>不过其他的来源也不应该忽视啦，考虑之后开几个新的小章节介绍MS Query等等</p>
+<h1 id="导入文本"><a href="#导入文本" class="headerlink" title="导入文本"></a>导入文本</h1><p>Excel默认的导入文本格式有三种Txt,Prn,Csv<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_02_20140827.jpg" alt="02"><br>Txt不用多说，地球人都知道，不知道的打开一个系统记事本，写两个字保存一下就是Txt文件。<br>Prn是打印用文件，一般不怎么用到，也就不浪费时间了。<br>Csv是Comma Separated Values的缩写，字面上的意思就是用逗号分隔的数据，我们打开一个CSV文件就可以看到了，里面都是用逗号来隔开数据的。<br>PS. 如果需要从什么系统中导出数据的话，有CSV格式的话最好用CSV，导出数据的原则是格式越少越好，文件越简单越好，这样才能方便被各种其他的工具使用，如果只是导出成Excel格式xlsx的话，老版本的Excel就开不了了。即使是导出成xls这样比较老的Excel格式里面也会有过多的不必要的格式信息，导入其他系统的时候不但用不到，还有可能导致错误。<br>不过很多文本文件的后缀名字千奇百怪，尤其是国产的一些管理系统什么的导出来的，往往就跟着一个谁也没见过的后缀名字，不过只要这个文件可以用记事本来打开，就可以用文本导入。</p>
+<p>导入一个文本之后，Excel会问一下你这个文件是用分隔符号还是固定宽度来导入的<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_03_20140827.jpg" alt="03"></p>
+<ul>
+<li>如果数据之间有符号（包括空格和Tab）分隔，那就用分隔符号，这个应该囊括了绝大部分的情况</li>
+<li>固定宽度在一些特定的地方有很方便的用处<br>这里我们用的是一个Csv文件，我用记事本随便写的，大家可以用Excel和记事本分别打开看看里面是什么样子的。<br><a href="">12_导入_01</a><br>因为是Csv所以是逗号分隔，我们直接下一步之后选择逗号就可以在下面预览到效果了<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_04_20140827.jpg" alt="04"><blockquote>
+<p>还有一些简单的选项，包括是不是把连续的分隔符号视为单个，和是否使用文本识别符号<br>如果选了把连续的分隔符号视为单个的话连着来两个逗号的话就会忽略一个<br><code>例如AA,,BB导入表中就变成了 AA BB，但是没有选这个的话，就会变成 AA 空格 BB</code><br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_05_20140827.jpg" alt="05"><br>文本识别符号是用来识别一段数据是不是视作文本的，如果选无的话所有的信息都会被按默认格式填到格子里去，如果选了，文本识别符后面的文字就被视作文本填充<br>` 例如原始数据中有一个数据是 ‘12345, 3456’ 如果选择了’作为文本识别符号的话，12345,3456就会被认为是一个字段填进一个格子里面去。<br>这个是选择’作为文本识别符号的情况，因为999前面有个’而后面就没有’了，所以所有的999后面的都被认为是一个文本值<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_06_20140827.jpg" alt="06"><br>而888,777夹在两个”中间，所以选择”作为文本识别符号的话，就会把888,777填在一个格子里面<br><img src="http://blackpepperfactory.qiniudn.com/ExcelTraining%5COffice12_07_20140827.jpg" alt="07"></p>
+</blockquote>
+</li>
+</ul>
+<p>选择好自己需要的选项，点击下一步最后还要确认一下数据格式。</p>
+<blockquote>
+<p>数据格式这里要注意一下，如果你的表里面有一下几种情况，最好设置一下：</p>
+</blockquote>
+<ul>
+<li>如果有日期的，记得换成日期格式</li>
+<li>如果有类似于身份证号码这样的长数字而且需要全部显示的，记得选中那一列再把数据格式换成文本，这样就可以正常显示而不会改成科学计数法了<br>格式也都OK了就点击完成，数据就被导入Excel了。</li>
+</ul>
+<h1 id="导入前的编辑"><a href="#导入前的编辑" class="headerlink" title="导入前的编辑"></a>导入前的编辑</h1><p>不过并不是所有的文本原始数据都是这么友好的，有的里面是先分块再出的数据，还有的分隔不清楚。这时候我们就要对数据进行一些处理，数据处理的时候要注意一下几点：</p>
+<ul>
+<li>用好查找和替换，大部分格式上的调整是用替换完成的</li>
+<li>用记事本无法把字符替换成回车，但是用Word打开就可以</li>
+<li>千万注意符号的全角和半角，如果真的不放心的话，完成之后用全部替换把全角的逗号替换成半角的做一次</li>
+</ul>
+<p>举个例子吧，不重复做了，这里是一个对数据预处理的例子，看下面的Excel处理部分就可以了<br><a href="http://blackpepperfactory.com/2014/08/19/exportAD/" target="_blank" rel="external">导出AD用户信息并处理</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Learning/">Learning</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2014/08/26/office12/" data-title="从抽象到具象的循环 - 数据的获得处理和展示 1-2 | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/08/26/mylukies/" title="我的老钢笔 - 永生系列">
+  <strong>上一篇：</strong><br/>
+  <span>
+  我的老钢笔 - 永生系列</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/20/exceltransf/"  title="Excel根据需求查找并填充值以及Vlookup的一些注意点">
+ <strong>下一篇：</strong><br/> 
+ <span>Excel根据需求查找并填充值以及Vlookup的一些注意点
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="从抽象到具象的循环 - 数据的获得处理和展示 1-2" data-url="Blackpepperfactory.com/2014/08/26/office12/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据来源"><span class="toc-number">1.</span> <span class="toc-text">数据来源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导入文本"><span class="toc-number">2.</span> <span class="toc-text">导入文本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导入前的编辑"><span class="toc-number">3.</span> <span class="toc-text">导入前的编辑</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>90</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
