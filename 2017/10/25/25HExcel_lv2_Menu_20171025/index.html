@@ -35,11 +35,12 @@
 <meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_07.png">
 <meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_08.png">
 <meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_09.png">
-<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_10.png">
 <meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_12.png">
-<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_11.png">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_10.png">
 <meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_13.png">
-<meta property="og:updated_time" content="2017-10-25T03:31:12.000Z">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_11.png">
+<meta property="og:image" content="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_43.png">
+<meta property="og:updated_time" content="2017-10-25T03:34:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel 2级联动菜单 II">
 <meta name="twitter:description" content="在一级菜单中使用空格和数字，双二级菜单联动话说疙瘩是人类进步的动力这句话真是一点没错，像我这种对事情没什么要求的人就是推动不了技术的进步…事情是这样的，以前写过一个文档给HR关于怎么创建二级菜单的：二级联动菜单总的来说大家用得还不错，但是呢，微软对于命名区域有一些规定：
@@ -141,14 +142,14 @@
 <p>然后依葫芦画瓢，给第二个区域来创建一下命名区域，这下不对了，提示已经存在了，看来Excel还不够聪明啊，自动改名字只能做一次呢。<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_06.png" alt=""></p>
 <p>所以手动来创建一下吧，这次我们名字就把1. 去掉直接用部门的名字吧<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_07.png" alt=""></p>
 <p>手动把3个新的命名区域都创建好了就可以来下一步了<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_08.png" alt=""></p>
-<p>第一级菜单还是很简单的，就是有效性里面简单选择一下就好<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_09.png" alt=""></p>
+<p>第一级菜单还是很简单的，就是有效性里面简单选择一下就好<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_09.png" alt=""><br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_12.png" alt=""></p>
 <p>关键是第二级。第一部分的命名区域里面把第一级菜单的选项部分名字里面的空格替换成了下划线然后前面加上了下划线来规避命名格式的问题，我们也一样来处理一下好了，公式里面替换一下空格同时前面加上下划线<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">=INDIRECT(&quot;_&quot;&amp;SUBSTITUTE($B2,&quot; &quot;,&quot;_&quot;))</div></pre></td></tr></table></figure></p>
 <p><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_10.png" alt=""></p>
-<p>这样一来第一个菜单项就OK啦，我们来试试看：<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_12.png" alt=""></p>
+<p>这样一来第一个菜单项就OK啦，我们来试试看：<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_13.png" alt=""></p>
 <p>成功！</p>
 <p>知道原理了，第二个的公式也简单了，在Source 里面用这个公式来去掉前面三个字符就OK了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">=INDIRECT(REPLACE($B2,1,3,&quot;&quot;))</div></pre></td></tr></table></figure></p>
 <p><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_11.png" alt=""></p>
-<p>把从第一个字符数起前三个字符替换掉。试试看呢，也OK啦！<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_13.png" alt=""></p>
+<p>把从第一个字符数起前三个字符替换掉。试试看呢，也OK啦！<br><img src="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_43.png" alt=""></p>
 <p>至此，任务完成，写个文档整理一下思路吧。</p>
 <p><a href="http://blackpepperfactory.qiniudn.com/Excel/lv2Menu_Excel_2%E7%BA%A7%E8%8F%9C%E5%8D%95_V2.xlsx" target="_blank" rel="external">例子在这里</a></p>
   
