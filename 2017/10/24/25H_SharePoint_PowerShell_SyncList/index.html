@@ -1,0 +1,489 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Sharepoint Online with PowerShell - 从文件导入List | BlackPepperFactory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Randy Chen">
+    
+
+    
+    <meta name="description" content="一言难尽啊。公司上线了O365，于是很多应用就搬到了Sharepoint上面，一些新的开发和需求也出现了，最普遍的就是如何更新List。用Excel来创建一个新的list不是什么难事，但是要维护一个已有的list就有点讨厌了，公司还禁用了Sharepoint Online的外部数据，也就是说只能在原生的list里面找办法了。网上也不是没有教程啊什么的，但是都是基于Sharepoint 2013/2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sharepoint Online with PowerShell - 从文件导入List">
+<meta property="og:url" content="Blackpepperfactory.com/2017/10/24/25H_SharePoint_PowerShell_SyncList/index.html">
+<meta property="og:site_name" content="BlackPepperFactory">
+<meta property="og:description" content="一言难尽啊。公司上线了O365，于是很多应用就搬到了Sharepoint上面，一些新的开发和需求也出现了，最普遍的就是如何更新List。用Excel来创建一个新的list不是什么难事，但是要维护一个已有的list就有点讨厌了，公司还禁用了Sharepoint Online的外部数据，也就是说只能在原生的list里面找办法了。网上也不是没有教程啊什么的，但是都是基于Sharepoint 2013/2">
+<meta property="og:updated_time" content="2017-10-25T01:43:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sharepoint Online with PowerShell - 从文件导入List">
+<meta name="twitter:description" content="一言难尽啊。公司上线了O365，于是很多应用就搬到了Sharepoint上面，一些新的开发和需求也出现了，最普遍的就是如何更新List。用Excel来创建一个新的list不是什么难事，但是要维护一个已有的list就有点讨厌了，公司还禁用了Sharepoint Online的外部数据，也就是说只能在原生的list里面找办法了。网上也不是没有教程啊什么的，但是都是基于Sharepoint 2013/2">
+
+    
+    <link rel="alternative" href="/atom.xml" title="BlackPepperFactory" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="BlackPepperFactory" title="BlackPepperFactory"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="BlackPepperFactory">BlackPepperFactory</a></h1>
+				<h2 class="blog-motto">Life is just like a Pepper Shaker</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:Blackpepperfactory.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/24/25H_SharePoint_PowerShell_SyncList/" title="Sharepoint Online with PowerShell - 从文件导入List" itemprop="url">Sharepoint Online with PowerShell - 从文件导入List</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Randy Chen" target="_blank" itemprop="author">Randy Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-24T11:12:20.000Z" itemprop="datePublished"> 发表于 2017-10-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>一言难尽啊。<br>公司上线了O365，于是很多应用就搬到了Sharepoint上面，一些新的开发和需求也出现了，最普遍的就是如何更新List。<br>用Excel来创建一个新的list不是什么难事，但是要维护一个已有的list就有点讨厌了，公司还禁用了Sharepoint Online的外部数据，也就是说只能在原生的list里面找办法了。<br>网上也不是没有教程啊什么的，但是都是基于Sharepoint 2013/2016的，都是在Sharepoint服务器上跑的。我们这里是Sharepoint Online装好SDK和PowerShell 工具之后连Get_SPWeb 都没有，我还以为是我装Shell出问题了，重装过也试了好多次，后来去看了看官方文档，Sharepoint Online Shell里面压根就没有Get-SPWeb的，害我找了老半天。<br>当时呢这个需求也不是很迫切，反正手动删一下，然后list开datasheet view然后复制粘贴一下就行了。<br>不过数据量一大，问题就出来了，主要是两个方面：一来是操作慢，从Excel 拷贝到List里面调用的好像是IE的Active插件，所以不是IE不行，而且超级慢，不过数据本来也就多，全国一千多将近两千的用户信息，总得等着IE死上一会才行。第二是如果list里面设置了格式的话，每一条还要做格式检查，如果不对还要人手动来修改或者删除才会去做下一条。<br>所以老是让人事手动也不现实啦，还是得考虑用什么脚本什么的解决问题。</p>
+<p>所以还是用PowerShell 吧，起码比搞C#方便一点。<br>重新开始，用Get_SPWeb这条路肯定是不行了，用对象的方式吧：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Load SharePoint CSOM Assemblies</span></div><div class="line"><span class="built_in">Add-Type</span> -Path <span class="string">"C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.dll"</span></div><div class="line"><span class="built_in">Add-Type</span> -Path <span class="string">"C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.dll"</span></div><div class="line"><span class="built_in">Add-Type</span> -Path <span class="string">"C:\Program Files\Common Files\microsoft shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.UserProfiles.dll"</span> </div><div class="line">  </div><div class="line"><span class="comment">##Variables for Processing</span></div><div class="line"><span class="variable">$SiteUrl</span> = <span class="string">"https://yoursite.sharepoint.com/"</span></div><div class="line"><span class="variable">$ListName</span>=<span class="string">"Your_List"</span></div><div class="line"><span class="comment">#$ImportFile ="C:\filepath.csv"</span></div><div class="line"><span class="variable">$UserName</span>=<span class="string">"youraccount"</span></div><div class="line"><span class="variable">$Password</span> =<span class="string">"yourpassword"</span></div><div class="line"><span class="comment">#Get the Data from CSV and Add to SharePoint List</span></div><div class="line"><span class="comment">#Specify the path of the excel file</span></div><div class="line"><span class="variable">$FilePath</span> = <span class="string">"C:\yourExcelpath.xls"</span></div><div class="line"><span class="comment">#Specify the Sheet name</span></div><div class="line"><span class="variable">$SheetName</span> = <span class="string">"sheet1"</span></div></pre></td></tr></table></figure>
+<p>前面三个是添加Powershell Sharepoint sdk的支持，如果是装的2016版的SDK文件夹就是16，2013的SDK文件夹就是15。</p>
+<p>后面就是一些参数了，带入的文件用Excel或者文本都可以的。</p>
+<p>然后先来读取一下 SharePoint的lsit</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#Setup Credentials to connect</span></div><div class="line"><span class="variable">$Credentials</span> = <span class="built_in">New-Object</span> Microsoft.SharePoint.Client.SharePointOnlineCredentials(<span class="variable">$UserName</span>,(<span class="built_in">ConvertTo-SecureString</span> <span class="variable">$Password</span> -AsPlainText -Force))</div><div class="line"> </div><div class="line"><span class="comment">#Set up the context</span></div><div class="line"><span class="variable">$Context</span> = <span class="built_in">New-Object</span> Microsoft.SharePoint.Client.ClientContext(<span class="variable">$SiteUrl</span>)</div><div class="line"><span class="variable">$Context</span>.Credentials = <span class="variable">$credentials</span></div><div class="line">  </div><div class="line"><span class="comment">#Get the List</span></div><div class="line"><span class="variable">$List</span> = <span class="variable">$Context</span>.web.Lists.GetByTitle(<span class="variable">$ListName</span>)</div><div class="line"></div><div class="line"><span class="comment">#Delete list items</span></div><div class="line"></div><div class="line"><span class="variable">$ListItems</span> = <span class="variable">$List</span>.GetItems([Microsoft.SharePoint.Client.CamlQuery]::CreateAllItemsQuery()) </div><div class="line"><span class="variable">$Context</span>.Load(<span class="variable">$ListItems</span>)</div><div class="line"><span class="variable">$Context</span>.ExecuteQuery()       </div><div class="line"></div><div class="line"><span class="built_in">write-host</span> <span class="string">"Total Number of List Items found:"</span><span class="variable">$ListItems</span>.Count</div></pre></td></tr></table></figure>
+<p>这样就连接到list了， 这里用的是CSOM (Client Object Model) 的API是从2010开始的新的特性。基本原理是把请求打包成XML然后发给服务器，服务器把结果打包成JSON发回来，不需要保持连接。</p>
+<p>然后可以直接删除List的Item了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="variable">$ListItems</span>.Count <span class="nomarkup">-gt</span> <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">    <span class="variable">$j</span> = <span class="number">1</span></div><div class="line">    <span class="variable">$l</span> = <span class="number">0</span></div><div class="line">    <span class="comment">#Loop through each item and delete</span></div><div class="line">    <span class="keyword">For</span> (<span class="variable">$i</span> = <span class="variable">$ListItems</span>.Count-<span class="number">1</span>; <span class="variable">$i</span> <span class="nomarkup">-ge</span> <span class="number">0</span>; <span class="variable">$i</span>--)</div><div class="line">    &#123;</div><div class="line">        <span class="variable">$ListItems</span>[<span class="variable">$i</span>].DeleteObject()</div><div class="line">        <span class="variable">$l</span> ++</div><div class="line">        <span class="variable">$j</span> ++</div><div class="line">        <span class="keyword">if</span> (<span class="variable">$j</span> <span class="nomarkup">-eq</span> <span class="number">30</span>)</div><div class="line">        &#123;<span class="variable">$Context</span>.ExecuteQuery()</div><div class="line">        <span class="variable">$j</span> =<span class="number">1</span>&#125;</div><div class="line">    &#125; </div><div class="line">    <span class="variable">$Context</span>.ExecuteQuery()</div><div class="line">     </div><div class="line">    <span class="built_in">Write-Host</span> <span class="string">"All "</span> + <span class="variable">$l</span> + <span class="string">"Items deleted Successfully!"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>删除很简单，接下来要创建了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># Create an Object Excel.Application using Com interface</span></div><div class="line"><span class="variable">$objExcel</span> = <span class="built_in">New-Object</span> -ComObject Excel.Application</div><div class="line"><span class="comment"># Disable the 'visible' property so the document won't open in excel</span></div><div class="line"><span class="variable">$objExcel</span>.Visible = <span class="literal">$false</span></div><div class="line"><span class="comment"># Open the Excel file and save it in $WorkBook</span></div><div class="line"><span class="variable">$WorkBook</span> = <span class="variable">$objExcel</span>.Workbooks.Open(<span class="variable">$FilePath</span>)</div><div class="line"><span class="comment"># Load the WorkSheet 'BuildSpecs'</span></div><div class="line"><span class="variable">$WorkSheet</span> = <span class="variable">$WorkBook</span>.sheets.item(<span class="variable">$SheetName</span>)</div><div class="line"></div><div class="line"><span class="variable">$wsRange</span> = <span class="variable">$WorkSheet</span>.usedrange</div><div class="line"><span class="variable">$wsRows</span> = <span class="variable">$wsRange</span>.rows.Count</div><div class="line"></div><div class="line"></div><div class="line"><span class="variable">$r</span> = <span class="number">0</span></div><div class="line"><span class="variable">$t</span> = <span class="number">0</span></div><div class="line"><span class="keyword">For</span> (<span class="variable">$x</span> = <span class="number">2</span>; <span class="variable">$x</span> <span class="nomarkup">-le</span> <span class="variable">$wsRows</span>; <span class="variable">$x</span> ++) &#123;</div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">    <span class="comment">#add item to List</span></div><div class="line">    <span class="variable">$ListItemInfo</span> = <span class="built_in">New-Object</span> Microsoft.SharePoint.Client.ListItemCreationInformation</div><div class="line">    <span class="variable">$Item</span> = <span class="variable">$List</span>.AddItem(<span class="variable">$ListItemInfo</span>)</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Company"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">3</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Valmet_x0020_ID"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">4</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Cost_x0020_Center_x0020_NO_x002e"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">5</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Cost_x0020_Center_x0020_Name"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">6</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Country"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">2</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"City"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">7</span>).text</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Email_x0020_address"</span>] = <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">8</span>).text</div><div class="line">    <span class="keyword">if</span> (<span class="variable">$WorkSheet</span>.cells.Item(<span class="variable">$x</span>,<span class="number">8</span>).text <span class="nomarkup">-ne</span> <span class="string">""</span>) &#123;</div><div class="line">    <span class="built_in">Write-Host</span> <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">1</span>).text <span class="string">"Uploaded"</span></div><div class="line">    <span class="variable">$Email</span> = <span class="variable">$Context</span>.Web.SiteUsers.GetByEmail(<span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">8</span>).text)</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Name"</span>] = <span class="variable">$Email</span>&#125;</div><div class="line">    <span class="keyword">if</span> (<span class="variable">$WorkSheet</span>.cells.Item(<span class="variable">$x</span>,<span class="number">11</span>).text  <span class="nomarkup">-ne</span> <span class="string">""</span>) &#123;</div><div class="line">    <span class="variable">$Manager</span> = <span class="variable">$Context</span>.Web.SiteUsers.GetByEmail(<span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">11</span>).text)</div><div class="line">    <span class="variable">$Item</span>[<span class="string">"Manager"</span>] = <span class="variable">$Manager</span>&#125;</div><div class="line">    <span class="variable">$Item</span>.Update()</div><div class="line">    <span class="variable">$Context</span>.Load(<span class="variable">$List</span>)</div><div class="line">    <span class="variable">$Context</span>.ExecuteQuery()</div><div class="line">    <span class="variable">$t</span> ++</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> &#123;<span class="built_in">Write-Host</span> <span class="variable">$WorkSheet</span>.cells.item(<span class="variable">$x</span>,<span class="number">1</span>).text + <span class="string">"Error"</span></div><div class="line">           <span class="built_in">Write-Host</span> <span class="string">"$(<span class="variable">$_</span>.Exception.Message)"</span> -foregroundcolor red</div><div class="line">           <span class="variable">$r</span> ++&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="variable">$WorkBook</span>.close()</div><div class="line"><span class="variable">$objExcel</span>.Quit()</div></pre></td></tr></table></figure>
+<p>前面是打开一下Excel, 这个也不难。打算真正到创建Item的时候就有点坑了。<br>首先是有几列创建的时候报错说没有这个Item，我喵了个咪的，明明是有的啊，白纸黑字的Company Name写在上面的啊。<br>然后查了一下，创建的时候那个 $Item[“Company Name”]是不对的，应该是看浏览器里面这个Column的地址，因为SharePoint里面创建一个Column的时候可能会改名字，而浏览器里面的地址是不改的，我里面Company Name原来是Company，所以就报错了…</p>
+<p>好吧这个坑是过去了，结果还有坑，为了方便，list里面有几个是用的Person and Group的字段。然后直接用名字填进去就报错啦，报的是格式不对的错。<br>这个亏得自己咬着牙咽进去，查呗，得先去抓一下用户的Object,然后才行，在Sharepoint_Server_SDK支持下挺简单的，用一下Ensureuser就行，但是现在不是没有嘛。<br>网上是找不出什么办法了，只能自己去查SDK了，Sharepoint Online里面这种最基础的功能不可能没有的啊。</p>
+<p>后来还是找到了，用$Context.Web.SiteUsers.GetByEmail 这样用用户的邮件地址就能抓到Sharepoint的object的信息了。</p>
+<p>到此就简单啦，整个过程用Try Catch包装一下，即使是过程中出问题也没关系，直接跳到下一个就行。</p>
+<p>测试了一下挺好的，原来删除复制粘贴，IE    光卡死就得半小时，等把整个list验证完又是一个多钟头过去了，现在整个流程只要十几分钟而且完全不用人在边上看着的，找个共享文件夹让HR定期把文件扔进去，然后自动跑脚本就行了。</p>
+<p>其实呢，研究这个还是因为有个其他的想法，现在也在玩PowerShell, 这样所有的数据，只要是能导出来的，就可以自动导入Sharepoint list，然后连接到PowerShell来进行二次分析，虽然最好是直接从源头抓数据，但是有时候的确是有一些零散的东西的，现在这样也不失为一个统一分析的办法。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/25H/">25H</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Office/">Office</a><a href="/tags/Learning/">Learning</a><a href="/tags/PowerShell/">PowerShell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="Blackpepperfactory.com/2017/10/24/25H_SharePoint_PowerShell_SyncList/" data-title="Sharepoint Online with PowerShell - 从文件导入List | BlackPepperFactory" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/09/30/25HExcel_PowerBI_SpRow/"  title="Power BI 拆分行">
+ <strong>下一篇：</strong><br/> 
+ <span>Power BI 拆分行
+</span>
+</a>
+</div>
+
+</nav>
+
+	<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-title="Sharepoint Online with PowerShell - 从文件导入List" data-url="Blackpepperfactory.com/2017/10/24/25H_SharePoint_PowerShell_SyncList/"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"blackpepperfactory"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/BI/" style="font-size: 10px;">BI</a> <a href="/tags/Baby/" style="font-size: 20px;">Baby</a> <a href="/tags/Bala-Bala/" style="font-size: 14.55px;">Bala Bala</a> <a href="/tags/Bala-bala/" style="font-size: 10px;">Bala bala</a> <a href="/tags/Books/" style="font-size: 12.73px;">Books</a> <a href="/tags/Coding/" style="font-size: 11.82px;">Coding</a> <a href="/tags/Cook/" style="font-size: 10px;">Cook</a> <a href="/tags/Github/" style="font-size: 10.91px;">Github</a> <a href="/tags/Hobby/" style="font-size: 10px;">Hobby</a> <a href="/tags/IT/" style="font-size: 13.64px;">IT</a> <a href="/tags/IT-Service/" style="font-size: 12.73px;">IT Service</a> <a href="/tags/Learning/" style="font-size: 18.18px;">Learning</a> <a href="/tags/Lotus-Notes/" style="font-size: 11.82px;">Lotus Notes</a> <a href="/tags/Office/" style="font-size: 19.09px;">Office</a> <a href="/tags/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tags/Sports/" style="font-size: 16.36px;">Sports</a> <a href="/tags/Work/" style="font-size: 15.45px;">Work</a> <a href="/tags/人生百菜/" style="font-size: 17.27px;">人生百菜</a>
+    </div>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/16H/" title="16H">16H<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/24H/" title="24H">24H<sup>60</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/25H/" title="25H">25H<sup>95</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/8H/" title="8H">8H<sup>27</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://t.cn/RLDZLTb" target="_blank" title="我的Office视频教程">我的Office视频教程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kanbaogao.sinaapp.com/" target="_blank" title="解读体检报告">解读体检报告</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 只吃猫粮的猫. <br/>
+			她的名字叫小麦.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Motobatrider" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xinhaochen" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/2735487" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:Blackpepperfactory@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Randy Chen">Randy Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
